@@ -33,12 +33,12 @@ Go over to Minikube's [driver's page](https://minikube.sigs.k8s.io/docs/drivers/
 Hence, the driver is going to be `kvm2`. You can set the default driver using the following command 
 
 ```console
-$ minikube config set driver kvm2
+minikube config set driver kvm2
 ```
 
 To start (init) run the following command.
 ```console
-$ minikube start --nodes=3 -p multi-node-demo --driver=kvm2
+minikube start --nodes=3 -p multi-node-demo --driver=kvm2
 ```
 The above command will start a 3 node cluster. 1 control plane node and 2 worker nodes. We are calling our cluster `multi-node-demo`.
 
@@ -48,19 +48,16 @@ The above command will start a 3 node cluster. 1 control plane node and 2 worker
 <!-- Make the new profile the default one -->
 I recommend you switch over to the new profile we created so that you won't  have to specify the profile every time you start your minikube cluster.
 ```console
-$ minikube profile multi-node-demo
+minikube profile multi-node-demo
 ```
 
 ### STEP 3: Setting kubectl
 
-<!-- configure kubectl, and enable tab-completion -->
-```text
-alias kubectl="minikube kubectl --"
-```
+You can use `minikube kubectl --` command to administer your cluster but I prefer installing the `kubectl` binary allows object tab completion. Follow the [guide](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) to install kubectl.
 
 To enable bash-completion you need to have the package `bash-completion` installed on your system(obviously!)
 ```console
-$ kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
 ```
 
 <!-- Is it better to install kubectl binary? I think it gives object completion -->
@@ -71,7 +68,7 @@ $ kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
 To make your development seamless you can have docker point to your Minikube cluster. This makes building images easier by allowing you to directly push to the local registry on the your cluster.
 
 ```console
-$ eval $(minikube docker-env)
+eval $(minikube docker-env)
 ```
 Note: This command must be re-run in a new terminal. 
 
