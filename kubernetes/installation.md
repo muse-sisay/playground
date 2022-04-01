@@ -51,6 +51,11 @@ I recommend you switch over to the new profile we created so that you won't  hav
 minikube profile multi-node-demo
 ```
 
+(optional) If your user is not already part of `libvirt` group consider adding it. If you don't every time you start your cluster (`minikube start`) you will be prompted for the root password, which is annoying when you have multiple nodes.
+```
+sudo usermod -aG libvirt $USER
+```
+
 ### STEP 3: Setting kubectl
 
 You can use `minikube kubectl --` command to administer your cluster but I prefer installing the `kubectl` binary allows object tab completion. Follow the [guide](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) to install kubectl.
